@@ -15,58 +15,58 @@
 <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-<div id="boot">جارٍ تحميل التطبيق…</div>
+<div id="boot">Loading… / جارٍ التحميل…</div>
 <div id="fatal" hidden></div>
-<header><div><h1>مصروفاتي</h1><small style="display:block;font-size:13px;opacity:.75;direction:ltr;text-align:right">Mohamed Elmahdy</small></div><span class="cur">EGP</span></header>
+<header><h1 data-i18n="appName">مصروفاتي</h1><small class="by">Mohamed Elmahdy</small><div class="hr"><button id="lang" type="button">EN</button><select id="cur" data-i18n-aria="currency"><option>EGP</option></select></div></header>
 <main id="app" hidden>
  <section id="dashboard" class="view">
-  <label class="field">الشهر<input type="month" id="dMonth"></label>
-  <div class="hero"><small>إجمالي الشهر</small><b id="dTotal" data-v="0">0</b></div>
+  <label class="field"><span data-i18n="month"></span><input type="month" id="dMonth"></label>
+  <div class="hero"><small data-i18n="monthTotal"></small><b id="dTotal" data-v="0">0</b></div>
   <div class="two">
    <div class="stat debit"><small>Debit</small><b id="dDebit" data-v="0">0</b></div>
    <div class="stat credit"><small>Credit</small><b id="dCredit" data-v="0">0</b></div>
   </div>
-  <p class="count">عدد العمليات: <b id="dCount">0</b></p>
-  <h2>آخر العمليات</h2><ul id="dList" class="list"></ul>
-  <footer class="copy"><span>© 2026 Mohamed Elmahdy — جميع الحقوق محفوظة</span><a href="tel:+201110903840" dir="ltr">+201110903840</a></footer>
+  <p class="count"><span data-i18n="txCount"></span> <b id="dCount">0</b></p>
+  <h2 data-i18n="latest"></h2><ul id="dList" class="list"></ul>
+  <footer class="copy"><span data-i18n="rights"></span><a href="tel:+201110903840" dir="ltr">+201110903840</a></footer>
  </section>
  <section id="add" class="view" hidden>
-  <h2 id="formTitle">إضافة عملية</h2>
+  <h2 id="formTitle"></h2>
   <form id="form" novalidate>
-   <label class="field">المبلغ (EGP)<input id="fAmount" type="number" inputmode="decimal" step="0.01" min="0" placeholder="0.00"><em class="err" id="eAmount"></em></label>
-   <label class="field">التاريخ<input id="fDate" type="date"><em class="err" id="eDate"></em></label>
-   <label class="field">نوع الحساب<select id="fType"><option value="debit">Debit – بطاقة خصم</option><option value="credit">Credit – بطاقة ائتمان</option></select></label>
-   <label class="field">السبب<input id="fReason" type="text" maxlength="120" placeholder="مثال: بقالة"><em class="err" id="eReason"></em></label>
-   <button class="btn primary" id="fSave" type="submit">حفظ العملية</button>
-   <button class="btn" id="fCancel" type="button" hidden>إلغاء التعديل</button>
+   <label class="field"><span data-i18n="amount"></span><input id="fAmount" type="number" inputmode="decimal" step="0.01" min="0" placeholder="0.00"><em class="err" id="eAmount"></em></label>
+   <label class="field"><span data-i18n="date"></span><input id="fDate" type="date"><em class="err" id="eDate"></em></label>
+   <label class="field"><span data-i18n="acctType"></span><select id="fType"><option value="debit" data-i18n="debitOpt"></option><option value="credit" data-i18n="creditOpt"></option></select></label>
+   <label class="field"><span data-i18n="reason"></span><input id="fReason" type="text" maxlength="120" data-i18n-ph="reasonPh"><em class="err" id="eReason"></em></label>
+   <button class="btn primary" id="fSave" type="submit" data-i18n="save"></button>
+   <button class="btn" id="fCancel" type="button" data-i18n="cancelEdit" hidden></button>
   </form>
  </section>
  <section id="history" class="view" hidden>
-  <h2>السجل</h2>
+  <h2 data-i18n="history"></h2>
   <div class="filters">
-   <input type="month" id="hMonth" aria-label="الشهر">
-   <select id="hType" aria-label="النوع"><option value="">كل الأنواع</option><option value="debit">Debit</option><option value="credit">Credit</option></select>
-   <input type="search" id="hSearch" placeholder="بحث في السبب">
-   <select id="hSort" aria-label="الترتيب"><option value="desc">الأحدث أولاً</option><option value="asc">الأقدم أولاً</option></select>
-   <button class="btn small" id="hAll" type="button">كل الشهور</button>
+   <input type="month" id="hMonth" data-i18n-aria="month">
+   <select id="hType" data-i18n-aria="acctType"><option value="" data-i18n="allTypes"></option><option value="debit">Debit</option><option value="credit">Credit</option></select>
+   <input type="search" id="hSearch" data-i18n-ph="searchPh">
+   <select id="hSort"><option value="desc" data-i18n="sortNew"></option><option value="asc" data-i18n="sortOld"></option></select>
+   <button class="btn small" id="hAll" type="button" data-i18n="allMonths"></button>
   </div>
-  <p class="count">الإجمالي: <b id="hTotal" data-v="0">0</b> — العدد: <b id="hCount">0</b></p>
+  <p class="count"><span data-i18n="total"></span> <b id="hTotal" data-v="0">0</b> — <span data-i18n="countLbl"></span> <b id="hCount">0</b></p>
   <ul id="hList" class="list"></ul>
  </section>
  <section id="backup" class="view" hidden>
-  <h2>النسخ الاحتياطي</h2>
-  <button class="btn primary" id="bJson" type="button">تصدير نسخة JSON</button>
-  <button class="btn" id="bCsv" type="button">تصدير السجل CSV</button>
-  <label class="btn file">استيراد نسخة JSON<input type="file" id="bFile" accept="application/json,.json" hidden></label>
-  <p class="note">الاستيراد يستبدل كل العمليات الحالية بعد التأكيد. بياناتك تبقى على هذا الجهاز فقط.</p>
+  <h2 data-i18n="backup"></h2>
+  <button class="btn primary" id="bJson" type="button" data-i18n="bJson"></button>
+  <button class="btn" id="bCsv" type="button" data-i18n="bCsv"></button>
+  <label class="btn file"><span data-i18n="bImp"></span><input type="file" id="bFile" accept="application/json,.json" hidden></label>
+  <p class="note" data-i18n="bNote"></p>
  </section>
 </main>
 <div id="toast" role="status" aria-live="polite" hidden></div>
 <nav id="nav" hidden>
- <button data-v="dashboard" class="on">الرئيسية</button>
- <button data-v="add">إضافة</button>
- <button data-v="history">السجل</button>
- <button data-v="backup">النسخ</button>
+ <button data-v="dashboard" class="on" data-i18n="navHome"></button>
+ <button data-v="add" data-i18n="navAdd"></button>
+ <button data-v="history" data-i18n="navHist"></button>
+ <button data-v="backup" data-i18n="navBackup"></button>
 </nav>
 <script src="./app.js"></script>
 </body>
