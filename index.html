@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مصروفاتي</title>
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icons/icon-192.png">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+<meta name="theme-color" content="#14332f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="مصروفاتي">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<div id="boot">جارٍ تحميل التطبيق…</div>
+<div id="fatal" hidden></div>
+<header><h1>مصروفاتي</h1><span class="cur">EGP</span></header>
+<main id="app" hidden>
+ <section id="dashboard" class="view">
+  <label class="field">الشهر<input type="month" id="dMonth"></label>
+  <div class="hero"><small>إجمالي الشهر</small><b id="dTotal" data-v="0">0</b></div>
+  <div class="two">
+   <div class="stat debit"><small>Debit</small><b id="dDebit" data-v="0">0</b></div>
+   <div class="stat credit"><small>Credit</small><b id="dCredit" data-v="0">0</b></div>
+  </div>
+  <p class="count">عدد العمليات: <b id="dCount">0</b></p>
+  <h2>آخر العمليات</h2><ul id="dList" class="list"></ul>
+ </section>
+ <section id="add" class="view" hidden>
+  <h2 id="formTitle">إضافة عملية</h2>
+  <form id="form" novalidate>
+   <label class="field">المبلغ (EGP)<input id="fAmount" type="number" inputmode="decimal" step="0.01" min="0" placeholder="0.00"><em class="err" id="eAmount"></em></label>
+   <label class="field">التاريخ<input id="fDate" type="date"><em class="err" id="eDate"></em></label>
+   <label class="field">نوع الحساب<select id="fType"><option value="debit">Debit – بطاقة خصم</option><option value="credit">Credit – بطاقة ائتمان</option></select></label>
+   <label class="field">السبب<input id="fReason" type="text" maxlength="120" placeholder="مثال: بقالة"><em class="err" id="eReason"></em></label>
+   <button class="btn primary" id="fSave" type="submit">حفظ العملية</button>
+   <button class="btn" id="fCancel" type="button" hidden>إلغاء التعديل</button>
+  </form>
+ </section>
+ <section id="history" class="view" hidden>
+  <h2>السجل</h2>
+  <div class="filters">
+   <input type="month" id="hMonth" aria-label="الشهر">
+   <select id="hType" aria-label="النوع"><option value="">كل الأنواع</option><option value="debit">Debit</option><option value="credit">Credit</option></select>
+   <input type="search" id="hSearch" placeholder="بحث في السبب">
+   <select id="hSort" aria-label="الترتيب"><option value="desc">الأحدث أولاً</option><option value="asc">الأقدم أولاً</option></select>
+   <button class="btn small" id="hAll" type="button">كل الشهور</button>
+  </div>
+  <p class="count">الإجمالي: <b id="hTotal" data-v="0">0</b> — العدد: <b id="hCount">0</b></p>
+  <ul id="hList" class="list"></ul>
+ </section>
+ <section id="backup" class="view" hidden>
+  <h2>النسخ الاحتياطي</h2>
+  <button class="btn primary" id="bJson" type="button">تصدير نسخة JSON</button>
+  <button class="btn" id="bCsv" type="button">تصدير السجل CSV</button>
+  <label class="btn file">استيراد نسخة JSON<input type="file" id="bFile" accept="application/json,.json" hidden></label>
+  <p class="note">الاستيراد يستبدل كل العمليات الحالية بعد التأكيد. بياناتك تبقى على هذا الجهاز فقط.</p>
+ </section>
+</main>
+<div id="toast" role="status" aria-live="polite" hidden></div>
+<nav id="nav" hidden>
+ <button data-v="dashboard" class="on">الرئيسية</button>
+ <button data-v="add">إضافة</button>
+ <button data-v="history">السجل</button>
+ <button data-v="backup">النسخ</button>
+</nav>
+<script src="./app.js"></script>
+</body>
+</html>
