@@ -10,15 +10,14 @@ var D={"ar": {"currency": "العملة", "appName": "مصروفاتي", "month"
 var LANG=(function(){try{var s=localStorage.getItem('mf_lang');if(s==='ar'||s==='en')return s}catch(e){}var l=(navigator.languages&&navigator.languages[0])||navigator.language||'';return /^ar/i.test(l)?'ar':'en'})();
 function tr(k){var v=D[LANG][k];for(var i=1;i<arguments.length;i++)v=v.replace('{'+(i-1)+'}',arguments[i]);return v}
 var CURS=['EGP','USD','EUR','GBP','SAR','AED','KWD','QAR'];
-var CUR=(function(){try{var c=localStorage.getItem('mf_cur');if(c&&/^[A-Z]{3}$/.test(c))return c}catch(e){}return 'EGP'})();
+var CUR='EGP';
 function vis(){return txs.filter(function(x){return(x.cur||'EGP')===CUR})}
-function buildCur(){var l=CURS.slice();txs.forEach(function(x){var c=x.cur||'EGP';if(l.indexOf(c)<0)l.push(c)});if(l.indexOf(CUR)<0)l.push(CUR);
- var s=$('#cur');s.textContent='';l.forEach(function(c){var o=document.createElement('option');o.value=c;o.textContent=c;s.append(o)});s.value=CUR}
+function buildCur(){}
 function applyLang(){var h=document.documentElement;h.lang=LANG;h.dir=LANG==='ar'?'rtl':'ltr';
  $$('[data-i18n]').forEach(function(n){n.textContent=tr(n.dataset.i18n)});
  $$('[data-i18n-ph]').forEach(function(n){n.placeholder=tr(n.dataset.i18nPh)});
  $$('[data-i18n-aria]').forEach(function(n){n.setAttribute('aria-label',tr(n.dataset.i18nAria))});
- $('#lang').textContent=LANG==='ar'?'EN':'عربي';buildCur();$('[data-i18n="amount"]').textContent=tr('amount')+' ('+CUR+')';
+ $('#lang').textContent=LANG==='ar'?'English':'العربية';buildCur();$('[data-i18n="amount"]').textContent=tr('amount')+' ('+CUR+')';
  $('#formTitle').textContent=tr(editId==null?'addTx':'editTx');
  ['eAmount','eDate','eReason'].forEach(function(i){$('#'+i).textContent=''});
  if(db)renderAll()}
@@ -136,7 +135,6 @@ function registerSW(){
  navigator.serviceWorker.register('./sw.js').catch(function(){})}
 
 function init(){
- $('#cur').onchange=function(){CUR=this.value;try{localStorage.setItem('mf_cur',CUR)}catch(e){}resetForm();applyLang()};
  $('#lang').onclick=function(){LANG=LANG==='ar'?'en':'ar';try{localStorage.setItem('mf_lang',LANG)}catch(e){}applyLang()};
  $('#dMonth').value=ym(today());$('#hMonth').value=ym(today());resetForm();
  $('#dMonth').onchange=renderDash;

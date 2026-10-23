@@ -12,12 +12,12 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Masrofaty">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="stylesheet" href="./styles.css">
+<link rel="stylesheet" href="./styles.css?v=4">
 </head>
 <body>
 <div id="boot">Loading… / جارٍ التحميل…</div>
 <div id="fatal" hidden></div>
-<header><h1 data-i18n="appName">مصروفاتي</h1><small class="by">Mohamed Elmahdy</small><div class="hr"><button id="lang" type="button">EN</button><select id="cur" data-i18n-aria="currency"><option>EGP</option></select></div></header>
+<header><div><h1 data-i18n="appName">مصروفاتي</h1><small class="by">Mohamed Elmahdy</small></div><button id="lang" type="button">English</button></header>
 <main id="app" hidden>
  <section id="dashboard" class="view">
   <label class="field"><span data-i18n="month"></span><input type="month" id="dMonth"></label>
@@ -68,6 +68,6 @@
  <button data-v="history" data-i18n="navHist"></button>
  <button data-v="backup" data-i18n="navBackup"></button>
 </nav>
-<script src="./app.js"></script>
+<script src="./app.js?v=4"></script>
 </body>
 </html>
