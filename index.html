@@ -12,7 +12,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Masrofaty">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="stylesheet" href="./styles.css?v=4">
+<link rel="stylesheet" href="./styles.css?v=5">
 </head>
 <body>
 <div id="boot">Loading… / جارٍ التحميل…</div>
@@ -53,6 +53,29 @@
   <p class="count"><span data-i18n="total"></span> <b id="hTotal" data-v="0">0</b> — <span data-i18n="countLbl"></span> <b id="hCount">0</b></p>
   <ul id="hList" class="list"></ul>
  </section>
+ <section id="budget" class="view" hidden>
+  <h2 data-i18n="budget"></h2>
+  <label class="field"><span data-i18n="month"></span><input type="month" id="bMonth"></label>
+  <label class="field" for="bAmount"><span data-i18n="monthlyBudget"></span></label>
+  <div class="inl"><input id="bAmount" type="number" inputmode="decimal" step="0.01" min="0" placeholder="0.00"><button class="btn small" id="bSaveTotal" type="button" data-i18n="saveBudget"></button></div>
+  <em class="err" id="eBTotal"></em>
+  <div class="hero"><small data-i18n="sBudget"></small><b id="bTotal" data-v="0">0</b></div>
+  <div class="two">
+   <div class="stat"><small data-i18n="sPlanned"></small><b id="bPlanned" data-v="0">0</b></div>
+   <div class="stat" id="bLeftBox"><small data-i18n="sLeft"></small><b id="bLeft" data-v="0">0</b></div>
+   <div class="stat debit"><small data-i18n="sPaid"></small><b id="bPaid" data-v="0">0</b></div>
+   <div class="stat credit"><small data-i18n="sUnpaid"></small><b id="bUnpaid" data-v="0">0</b></div>
+  </div>
+  <p class="note" data-i18n="budgetNote"></p>
+  <h2 data-i18n="planTitle"></h2>
+  <form id="bForm" novalidate>
+   <div class="bform"><input id="bName" type="text" maxlength="60" data-i18n-ph="itemPh"><input id="bItemAmt" type="number" inputmode="decimal" step="0.01" min="0" data-i18n-ph="itemAmtPh"></div>
+   <em class="err" id="eBItem"></em>
+   <button class="btn primary" id="bAdd" type="submit"></button>
+   <button class="btn" id="bCancel" type="button" data-i18n="cancelEdit" hidden></button>
+  </form>
+  <ul id="bList" class="list"></ul>
+ </section>
  <section id="backup" class="view" hidden>
   <h2 data-i18n="backup"></h2>
   <button class="btn primary" id="bJson" type="button" data-i18n="bJson"></button>
@@ -66,8 +89,9 @@
  <button data-v="dashboard" class="on" data-i18n="navHome"></button>
  <button data-v="add" data-i18n="navAdd"></button>
  <button data-v="history" data-i18n="navHist"></button>
+ <button data-v="budget" data-i18n="navBudget"></button>
  <button data-v="backup" data-i18n="navBackup"></button>
 </nav>
-<script src="./app.js?v=4"></script>
+<script src="./app.js?v=5"></script>
 </body>
 </html>
